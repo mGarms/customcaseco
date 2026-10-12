@@ -1,0 +1,1547 @@
+/* =====================================================
+   Custom Case Co. - Design System
+   Sections: 1 Variables | 2 Base | 3 Promo + Navbar | 4 Buttons
+             5 Cards | 6 Forms | 7 Layout helpers | 8 Footer | 9 Misc
+             10 Scroll reveal | 11 Dark mode
+   ===================================================== */
+
+/* ---------- 1. Variables (light = default) ---------- */
+:root {
+  --cc-purple-dark: #3b1f6b;
+  --cc-purple: #7c4dcc;
+  --cc-purple-pastel: #c4b5fd;
+  --cc-pink: #f9a8d4;
+  --cc-pink-dark: #ec5fa5;
+  --cc-lavender-bg: #f7f3ff;
+  --cc-pink-bg: #fff0f8;
+  --cc-white: #ffffff;
+  --cc-text: #2b2140;
+  --cc-muted: #6b6480;
+  --cc-border: #e9e0ff;
+
+  --cc-radius: 20px;
+  --cc-radius-sm: 12px;
+  --cc-shadow: 0 6px 24px rgba(59, 31, 107, .08);
+  --cc-shadow-hover: 0 12px 32px rgba(59, 31, 107, .16);
+  --cc-gradient: linear-gradient(135deg, var(--cc-pink), var(--cc-purple-pastel));
+
+  /* Generic semantic aliases (for readability / future use) */
+  --primary: var(--cc-purple-dark);
+  --primary-dark: #2a1650;
+  --secondary: var(--cc-pink-dark);
+  --accent: var(--cc-purple-pastel);
+  --background: var(--cc-white);
+  --surface: #ffffff;
+  --text: var(--cc-text);
+  --text-muted: var(--cc-muted);
+  --border: var(--cc-border);
+  --shadow: var(--cc-shadow);
+  --radius: var(--cc-radius);
+
+  --bs-body-font-family: 'Poppins', system-ui, sans-serif;
+  --bs-body-color: var(--cc-text);
+  --bs-link-color: var(--cc-purple);
+  --bs-link-hover-color: var(--cc-pink-dark);
+  --bs-border-color: var(--cc-border);
+}
+
+/* ---------- 2. Base ---------- */
+body {
+  font-family: var(--bs-body-font-family);
+  color: var(--text);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .25s ease, color .25s ease;
+}
+h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--primary); letter-spacing: -.01em; }
+a { text-decoration: none; transition: color .2s; }
+img { max-width: 100%; }
+.text-muted { color: var(--text-muted) !important; }
+.text-purple { color: var(--cc-purple) !important; }
+.text-pink { color: var(--cc-pink-dark) !important; }
+.bg-lavender { background: var(--cc-lavender-bg) !important; }
+.bg-pink-soft { background: var(--cc-pink-bg) !important; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- 3. Promo bar + Navbar ---------- */
+.cc-promo-bar {
+  background: var(--primary);
+  text-align: center;
+  padding: .5rem 1rem;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .4px;
+}
+.cc-promo-bar a { color: #fff; }
+.cc-promo-bar a:hover { color: var(--cc-pink); }
+.cc-promo-bar i { color: var(--cc-pink); }
+
+.cc-navbar {
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(59, 31, 107, .06);
+  padding: .7rem 0;
+  transition: box-shadow .2s, background-color .25s, padding .2s;
+}
+.cc-navbar.scrolled { box-shadow: 0 4px 20px rgba(59, 31, 107, .14); padding: .45rem 0; }
+
+.cc-brand { display: flex; align-items: center; gap: .6rem; padding: 0; }
+.cc-brand-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: var(--cc-gradient); color: var(--primary);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.cc-brand-text {
+  font-weight: 700; color: var(--primary); line-height: 1.1;
+  display: flex; flex-direction: column;
+}
+.cc-brand-text small { font-weight: 500; font-size: .68rem; color: var(--cc-pink-dark); }
+
+.cc-navbar .nav-link {
+  color: var(--text); font-weight: 500;
+  padding: .5rem 1rem !important; border-radius: 50px;
+  transition: background-color .2s, color .2s;
+}
+.cc-navbar .nav-link:hover { color: var(--cc-purple); background: var(--cc-lavender-bg); }
+.cc-navbar .nav-link.active { color: var(--primary); background: var(--cc-lavender-bg); font-weight: 600; }
+.navbar-toggler { border-color: var(--accent); }
+.navbar-toggler:focus { box-shadow: 0 0 0 .2rem rgba(196, 181, 253, .5); }
+
+.cc-badge {
+  position: absolute; top: -6px; right: -6px;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  background: var(--secondary); color: #fff;
+  font-size: .7rem; font-weight: 600; line-height: 20px;
+  border-radius: 50px; text-align: center;
+}
+
+.cc-dropdown {
+  border: none; border-radius: var(--cc-radius-sm);
+  box-shadow: var(--cc-shadow-hover); padding: .5rem;
+  background: var(--surface);
+}
+.cc-dropdown .dropdown-item { border-radius: 8px; padding: .5rem .8rem; color: var(--text); }
+.cc-dropdown .dropdown-item i { margin-right: .4rem; color: var(--cc-purple); }
+.cc-dropdown .dropdown-item:hover { background: var(--cc-lavender-bg); color: var(--primary); }
+
+/* ---------- 4. Buttons ---------- */
+.btn { transition: transform .2s, box-shadow .2s, background-color .2s, color .2s, border-color .2s; }
+
+.btn-cc-primary {
+  background: var(--primary); color: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 50px; padding: .5rem 1.4rem; font-weight: 600;
+}
+.btn-cc-primary:hover, .btn-cc-primary:focus {
+  background: var(--cc-purple); border-color: var(--cc-purple); color: #fff;
+}
+
+.btn-cc-outline {
+  background: transparent; color: var(--primary);
+  border: 2px solid var(--accent);
+  border-radius: 50px; padding: .5rem 1.2rem; font-weight: 500;
+}
+.btn-cc-outline:hover, .btn-cc-outline.active {
+  background: var(--accent); border-color: var(--accent); color: var(--primary);
+}
+
+.btn-cc-pink {
+  background: var(--cc-pink); color: var(--primary);
+  border: 2px solid var(--cc-pink);
+  border-radius: 50px; padding: .5rem 1.4rem; font-weight: 600;
+}
+.btn-cc-pink:hover { background: var(--cc-pink-dark); border-color: var(--cc-pink-dark); color: #fff; }
+
+.btn-cc-cta {
+  background: var(--cc-gradient); color: var(--primary);
+  border: none; border-radius: 50px;
+  padding: .85rem 2.2rem; font-weight: 700; letter-spacing: .5px;
+  box-shadow: 0 8px 20px rgba(236, 95, 165, .3);
+}
+.btn-cc-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(236, 95, 165, .4); color: var(--primary); }
+
+.btn-cc-primary:disabled, .btn-cc-cta:disabled, .btn-cc-outline:disabled { opacity: .6; transform: none; }
+
+/* ---------- 5. Cards ---------- */
+.cc-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); box-shadow: var(--shadow);
+  transition: background-color .25s, border-color .25s;
+}
+.cc-card-hover { transition: transform .2s, box-shadow .2s; }
+.cc-card-hover:hover { transform: translateY(-4px); box-shadow: var(--cc-shadow-hover); }
+
+.cc-product-card { overflow: hidden; height: 100%; display: flex; flex-direction: column; }
+.cc-product-img {
+  aspect-ratio: 1 / 1; background: var(--cc-lavender-bg);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 3rem; overflow: hidden;
+}
+.cc-product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.cc-product-card:hover .cc-product-img img { transform: scale(1.05); }
+.cc-product-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+.cc-product-body .btn { margin-top: auto; }
+.cc-price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+.cc-price-old { color: var(--text-muted); text-decoration: line-through; font-size: .9rem; }
+
+.cc-tag {
+  display: inline-block; background: var(--cc-pink-bg); color: var(--cc-pink-dark);
+  font-size: .72rem; font-weight: 600; padding: .25rem .7rem; border-radius: 50px;
+}
+
+/* ---------- 6. Forms ---------- */
+.form-label { font-weight: 500; font-size: .9rem; color: var(--primary); }
+.form-control, .form-select {
+  border-radius: var(--cc-radius-sm); border: 1.5px solid var(--border); padding: .65rem .9rem;
+  background: var(--surface); color: var(--text);
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 .2rem rgba(196, 181, 253, .4);
+  background: var(--surface); color: var(--text);
+}
+.form-check-input:checked { background-color: var(--cc-purple); border-color: var(--cc-purple); }
+.form-check-input:focus { box-shadow: 0 0 0 .2rem rgba(196, 181, 253, .4); border-color: var(--accent); }
+
+.alert { border: none; border-radius: var(--cc-radius-sm); }
+
+/* ---------- 7. Layout helpers ---------- */
+.cc-main { min-height: 60vh; }
+.cc-section { padding: 4rem 0; }
+.cc-section-title { text-align: center; margin-bottom: 2.5rem; }
+.cc-section-title h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); margin-bottom: .4rem; }
+.cc-section-title p { color: var(--text-muted); margin: 0; }
+
+.cc-hero {
+  background: linear-gradient(135deg, var(--cc-lavender-bg), #ffe9f4);
+  padding: 4rem 0;
+}
+.cc-hero h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+
+.cc-page-header {
+  background: linear-gradient(135deg, var(--cc-lavender-bg), var(--cc-pink-bg));
+  padding: 2.2rem 0; margin-bottom: 2rem;
+}
+.cc-page-header h1 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0; }
+.cc-page-header p { color: var(--text-muted); margin: .3rem 0 0; }
+
+/* ---------- 8. Footer ---------- */
+.cc-footer { background: var(--primary-dark); color: #e9e0ff; margin-top: 4rem; }
+.cc-footer h6 { color: #fff; font-weight: 600; margin-bottom: .9rem; }
+.cc-footer-brand { color: #fff; font-size: 1.25rem; font-weight: 700; }
+.cc-footer-brand:hover { color: var(--cc-pink); }
+.cc-footer a { color: var(--accent); }
+.cc-footer a:hover { color: var(--cc-pink); }
+.cc-footer ul li { margin-bottom: .45rem; }
+.cc-footer hr { border-color: rgba(255, 255, 255, .15); }
+
+/* ---------- 9. Misc ---------- */
+.cc-back-to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 1030;
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  box-shadow: var(--cc-shadow-hover);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .2s, transform .2s, visibility .2s;
+}
+.cc-back-to-top.show { opacity: 1; visibility: visible; transform: none; }
+.cc-back-to-top:hover { background: var(--cc-pink-dark); }
+
+.cc-status { font-size: .78rem; font-weight: 600; padding: .3rem .8rem; border-radius: 50px; }
+.cc-status-pending    { background: #fff3cd; color: #8a6d00; }
+.cc-status-processing { background: #e0d4ff; color: var(--primary); }
+.cc-status-customized { background: #ffe4c4; color: #8a4b00; }
+.cc-status-shipped    { background: #d6ecff; color: #1a5b99; }
+.cc-status-delivered  { background: #d5f5e3; color: #1d7a45; }
+.cc-status-cancelled  { background: #ffdbe0; color: #b3261e; }
+
+.input-group .password-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.input-group .form-control:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+
+@media (max-width: 991.98px) {
+  .cc-navbar .navbar-collapse { padding-top: 1rem; }
+  .cc-navbar .nav-link { padding: .7rem 1rem !important; }
+}
+@media (max-width: 575.98px) {
+  .cc-section { padding: 2.5rem 0; }
+  .cc-hero { padding: 2.5rem 0; }
+  .btn-cc-cta { padding: .75rem 1.6rem; }
+}
+
+/* ---------- 10. Scroll reveal ---------- */
+.cc-reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.cc-reveal.cc-reveal-visible { opacity: 1; transform: none; }
+.cc-reveal-group .cc-reveal:nth-child(1) { transition-delay: 0s; }
+.cc-reveal-group .cc-reveal:nth-child(2) { transition-delay: .08s; }
+.cc-reveal-group .cc-reveal:nth-child(3) { transition-delay: .16s; }
+.cc-reveal-group .cc-reveal:nth-child(4) { transition-delay: .24s; }
+.cc-reveal-group .cc-reveal:nth-child(5) { transition-delay: .32s; }
+.cc-reveal-group .cc-reveal:nth-child(6) { transition-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  .cc-reveal { opacity: 1; transform: none; }
+}
+
+/* =====================================================
+   11. DARK MODE
+   ===================================================== */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Brand colors */
+  --cc-purple-dark: #c4b5fd;
+  --cc-purple: #a78bfa;
+  --cc-purple-pastel: #8b7bb8;
+  --cc-pink: #f9a8d4;
+  --cc-pink-dark: #ff8fc3;
+
+  /* Backgrounds */
+  --cc-lavender-bg: #211c2d;
+  --cc-pink-bg: #2a1e2d;
+  --cc-white: #15121d;
+
+  /* Text */
+  --cc-text: #f5f1ff;
+  --cc-muted: #aaa1bd;
+
+  /* Borders */
+  --cc-border: #3b344b;
+
+  /* Semantic colors */
+  --primary: #c4b5fd;
+  --primary-dark: #0f0c15;
+  --secondary: #ff8fc3;
+  --accent: #8b7bb8;
+
+  --background: #15121d;
+  --surface: #1e1929;
+  --text: #f5f1ff;
+  --text-muted: #aaa1bd;
+  --border: #3b344b;
+
+  --shadow: 0 8px 30px rgba(0, 0, 0, .35);
+
+  /* Bootstrap 5 variables */
+  --bs-body-bg: #15121d;
+  --bs-body-color: #f5f1ff;
+
+  --bs-emphasis-color: #ffffff;
+
+  --bs-secondary-color: #aaa1bd;
+  --bs-secondary-bg: #1e1929;
+
+  --bs-tertiary-color: #8f879e;
+  --bs-tertiary-bg: #18141f;
+
+  --bs-border-color: #3b344b;
+
+  --bs-link-color: #c4b5fd;
+  --bs-link-hover-color: #ff8fc3;
+
+  --bs-heading-color: #f5f1ff;
+
+  --bs-form-control-bg: #1e1929;
+  --bs-form-control-color: #f5f1ff;
+}
+
+
+/* ---------- Global ---------- */
+
+[data-theme="dark"] body {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .text-dark {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-black {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .text-muted {
+  color: var(--text-muted) !important;
+}
+
+
+/* ---------- Navbar ---------- */
+
+[data-theme="dark"] .cc-navbar {
+  background: rgba(21, 18, 29, .92);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 4px 20px rgba(0,0,0,.35);
+}
+
+[data-theme="dark"] .cc-navbar.scrolled {
+  background: rgba(21, 18, 29, .97);
+  box-shadow: 0 8px 30px rgba(0,0,0,.45);
+}
+
+[data-theme="dark"] .cc-brand-text {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .cc-navbar .nav-link {
+  color: #e8e2f4;
+}
+
+[data-theme="dark"] .cc-navbar .nav-link:hover {
+  color: #ffffff;
+  background: #2a2438;
+}
+
+[data-theme="dark"] .cc-navbar .nav-link.active {
+  color: #ffffff;
+  background: #2d2640;
+}
+
+[data-theme="dark"] .navbar-toggler {
+  border-color: #5a4f70;
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+
+/* ---------- Dropdown ---------- */
+
+[data-theme="dark"] .dropdown-menu,
+[data-theme="dark"] .cc-dropdown {
+  background: #1e1929;
+  border: 1px solid #3b344b;
+  box-shadow: 0 15px 40px rgba(0,0,0,.45);
+}
+
+[data-theme="dark"] .dropdown-item,
+[data-theme="dark"] .cc-dropdown .dropdown-item {
+  color: #eee9f8;
+}
+
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .cc-dropdown .dropdown-item:hover {
+  background: #2a2438;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dropdown-divider {
+  border-color: #3b344b;
+}
+
+
+/* ---------- Cards ---------- */
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .cc-card {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+[data-theme="dark"] .card-header,
+[data-theme="dark"] .card-footer {
+  background: #211c2d;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .cc-product-img {
+  background: #241f33;
+}
+
+
+/* ---------- Forms ---------- */
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background-color: #1e1929;
+  color: #f5f1ff;
+  border-color: #4a405c;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: #817891;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+  background-color: #211c2d;
+  color: #ffffff;
+  border-color: #a78bfa;
+}
+
+[data-theme="dark"] .form-label {
+  color: #ddd6eb;
+}
+
+[data-theme="dark"] .form-check-label {
+  color: #ddd6eb;
+}
+
+[data-theme="dark"] .input-group-text {
+  background: #211c2d;
+  color: #ddd6eb;
+  border-color: #4a405c;
+}
+
+
+/* ---------- Tables ---------- */
+
+[data-theme="dark"] .table {
+  --bs-table-bg: #1e1929;
+  --bs-table-color: #f5f1ff;
+  --bs-table-border-color: #3b344b;
+
+  color: #f5f1ff;
+  background: #1e1929;
+}
+
+[data-theme="dark"] .table > :not(caption) > * > * {
+  background-color: #1e1929;
+  color: #f5f1ff;
+  border-color: #3b344b;
+}
+
+[data-theme="dark"] .table thead th {
+  background: #2a2438 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .table-hover > tbody > tr:hover > * {
+  background-color: #2a2438;
+  color: #ffffff;
+}
+
+
+/* ---------- Bootstrap backgrounds ---------- */
+
+[data-theme="dark"] .bg-white {
+  background-color: #1e1929 !important;
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: #211c2d !important;
+}
+
+[data-theme="dark"] .bg-body {
+  background-color: #15121d !important;
+}
+
+[data-theme="dark"] .bg-body-tertiary {
+  background-color: #211c2d !important;
+}
+
+[data-theme="dark"] .bg-body-secondary {
+  background-color: #1e1929 !important;
+}
+
+
+/* ---------- Bootstrap text ---------- */
+
+[data-theme="dark"] .text-white {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-secondary {
+  color: #aaa1bd !important;
+}
+
+
+/* ---------- Hero ---------- */
+
+[data-theme="dark"] .cc-hero {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(167,139,250,.15), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgba(249,168,212,.10), transparent 35%),
+    #211c2d;
+}
+
+[data-theme="dark"] .cc-page-header {
+  background:
+    linear-gradient(135deg, #211c2d, #2a1e2d);
+}
+
+
+/* ---------- Tags ---------- */
+
+[data-theme="dark"] .cc-tag {
+  background: #3a2d40;
+  color: #ffb5d9;
+}
+
+
+/* ---------- Buttons ---------- */
+
+[data-theme="dark"] .btn-cc-outline {
+  color: #ddd6eb;
+  border-color: #5a4f70;
+}
+
+[data-theme="dark"] .btn-cc-outline:hover,
+[data-theme="dark"] .btn-cc-outline.active {
+  background: #3a3150;
+  border-color: #8b7bb8;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-cc-primary {
+  background: #8b6bd1;
+  border-color: #8b6bd1;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .btn-cc-primary:hover {
+  background: #a78bfa;
+  border-color: #a78bfa;
+  color: #15121d;
+}
+
+
+/* ---------- Modal ---------- */
+
+[data-theme="dark"] .modal-content {
+  background: #1e1929;
+  color: #f5f1ff;
+  border-color: #3b344b;
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  border-color: #3b344b;
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+/* ---------- Accordion ---------- */
+
+[data-theme="dark"] .accordion-item {
+  background: #1e1929;
+  border-color: #3b344b;
+}
+
+[data-theme="dark"] .accordion-button {
+  background: #1e1929;
+  color: #f5f1ff;
+}
+
+[data-theme="dark"] .accordion-button:not(.collapsed) {
+  background: #2a2438;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .accordion-button::after {
+  filter: invert(1);
+}
+
+
+/* ---------- Pagination ---------- */
+
+[data-theme="dark"] .page-link {
+  background: #1e1929;
+  color: #c4b5fd;
+  border-color: #3b344b;
+}
+
+[data-theme="dark"] .page-link:hover {
+  background: #2a2438;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .page-item.active .page-link {
+  background: #8b6bd1;
+  border-color: #8b6bd1;
+  color: #ffffff;
+}
+
+
+/* ---------- Alerts ---------- */
+
+[data-theme="dark"] .alert-success {
+  background: #193522;
+  color: #9be7ad;
+}
+
+[data-theme="dark"] .alert-danger {
+  background: #3a1c23;
+  color: #ff9eac;
+}
+
+[data-theme="dark"] .alert-warning {
+  background: #3b3218;
+  color: #ffe09a;
+}
+
+[data-theme="dark"] .alert-info {
+  background: #192e3d;
+  color: #96d2ff;
+}
+
+
+/* ---------- Footer ---------- */
+
+[data-theme="dark"] .cc-footer {
+  background: #0d0a12;
+  color: #c9c0d8;
+}
+
+[data-theme="dark"] .cc-footer h6,
+[data-theme="dark"] .cc-footer-brand {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .cc-footer a {
+  color: #c4b5fd;
+}
+
+[data-theme="dark"] .cc-footer a:hover {
+  color: #ff8fc3;
+}
+
+[data-theme="dark"] .cc-footer hr {
+  border-color: rgba(255,255,255,.12);
+}
+
+
+/* ---------- Theme toggle ---------- */
+
+#themeToggleBtn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform .25s ease,
+    background-color .25s ease,
+    border-color .25s ease,
+    color .25s ease;
+}
+
+#themeToggleBtn:hover {
+  transform: rotate(12deg) scale(1.05);
+}
+
+[data-theme="dark"] #themeToggleBtn {
+  background: #2a2438;
+  border-color: #5a4f70;
+  color: #f9d5e9;
+}
+
+
+/* ---------- Smooth theme transition ---------- */
+
+html,
+body,
+.cc-navbar,
+.cc-card,
+.card,
+.form-control,
+.form-select,
+.dropdown-menu,
+.modal-content,
+.cc-footer,
+.cc-hero,
+.cc-page-header {
+  transition:
+    background-color .25s ease,
+    color .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+/* =========================================================
+   CUSTOM CASE CO. - COMPLETE DARK MODE
+   ========================================================= */
+
+/* ---------- DARK THEME VARIABLES ---------- */
+
+html[data-theme="dark"],
+html.theme-dark {
+    color-scheme: dark;
+
+    --cc-purple-dark: #c4b5fd;
+    --cc-purple: #a78bfa;
+    --cc-purple-pastel: #6d5a91;
+
+    --cc-pink: #f9a8d4;
+    --cc-pink-dark: #ff8fc3;
+
+    --cc-lavender-bg: #252033;
+    --cc-pink-bg: #30202f;
+
+    --cc-white: #15121d;
+    --cc-text: #f5f1ff;
+    --cc-muted: #aaa1bd;
+    --cc-border: #40384f;
+
+    --primary: #c4b5fd;
+    --primary-dark: #0d0a12;
+    --secondary: #ff8fc3;
+    --accent: #6d5a91;
+
+    --background: #15121d;
+    --surface: #1e1929;
+    --text: #f5f1ff;
+    --text-muted: #aaa1bd;
+    --border: #40384f;
+
+    --shadow: 0 8px 30px rgba(0, 0, 0, .4);
+
+    /* Bootstrap 5 */
+    --bs-body-bg: #15121d;
+    --bs-body-color: #f5f1ff;
+
+    --bs-emphasis-color: #ffffff;
+
+    --bs-secondary-color: #aaa1bd;
+    --bs-secondary-bg: #1e1929;
+
+    --bs-tertiary-color: #8f879e;
+    --bs-tertiary-bg: #18151f;
+
+    --bs-border-color: #40384f;
+
+    --bs-link-color: #c4b5fd;
+    --bs-link-hover-color: #ff8fc3;
+
+    --bs-heading-color: #f5f1ff;
+
+    --bs-form-control-bg: #1e1929;
+    --bs-form-control-color: #f5f1ff;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+html[data-theme="dark"] body,
+html.theme-dark body {
+    background-color: #15121d !important;
+    color: #f5f1ff !important;
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html.theme-dark h1,
+html.theme-dark h2,
+html.theme-dark h3,
+html.theme-dark h4,
+html.theme-dark h5,
+html.theme-dark h6 {
+    color: #f5f1ff !important;
+}
+
+html[data-theme="dark"] .text-dark,
+html.theme-dark .text-dark {
+    color: #f5f1ff !important;
+}
+
+html[data-theme="dark"] .text-muted,
+html.theme-dark .text-muted {
+    color: #aaa1bd !important;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+html[data-theme="dark"] .cc-navbar,
+html.theme-dark .cc-navbar {
+    background: rgba(21, 18, 29, .96) !important;
+    border-bottom: 1px solid #40384f;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, .4);
+}
+
+html[data-theme="dark"] .cc-navbar .nav-link,
+html.theme-dark .cc-navbar .nav-link {
+    color: #eee9f8 !important;
+}
+
+html[data-theme="dark"] .cc-navbar .nav-link:hover,
+html.theme-dark .cc-navbar .nav-link:hover {
+    color: #ffffff !important;
+    background: #2a2438 !important;
+}
+
+html[data-theme="dark"] .cc-navbar .nav-link.active,
+html.theme-dark .cc-navbar .nav-link.active {
+    color: #ffffff !important;
+    background: #302943 !important;
+}
+
+html[data-theme="dark"] .cc-brand-text,
+html.theme-dark .cc-brand-text {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DROPDOWNS
+   ========================================================= */
+
+html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .cc-dropdown,
+html.theme-dark .dropdown-menu,
+html.theme-dark .cc-dropdown {
+    background-color: #1e1929 !important;
+    border-color: #40384f !important;
+}
+
+html[data-theme="dark"] .dropdown-item,
+html.theme-dark .dropdown-item {
+    color: #eee9f8 !important;
+}
+
+html[data-theme="dark"] .dropdown-item:hover,
+html.theme-dark .dropdown-item:hover {
+    background-color: #2a2438 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .cc-card,
+html.theme-dark .card,
+html.theme-dark .cc-card {
+    background-color: #1e1929 !important;
+    color: #f5f1ff !important;
+    border-color: #40384f !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
+}
+
+html[data-theme="dark"] .card-header,
+html[data-theme="dark"] .card-footer,
+html.theme-dark .card-header,
+html.theme-dark .card-footer {
+    background-color: #252033 !important;
+    color: #f5f1ff !important;
+    border-color: #40384f !important;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html.theme-dark .form-control,
+html.theme-dark .form-select {
+    background-color: #1e1929 !important;
+    color: #f5f1ff !important;
+    border-color: #514763 !important;
+}
+
+html[data-theme="dark"] .form-control::placeholder,
+html.theme-dark .form-control::placeholder {
+    color: #817891 !important;
+}
+
+html[data-theme="dark"] .form-control:focus,
+html[data-theme="dark"] .form-select:focus,
+html.theme-dark .form-control:focus,
+html.theme-dark .form-select:focus {
+    background-color: #252033 !important;
+    color: #ffffff !important;
+    border-color: #a78bfa !important;
+}
+
+html[data-theme="dark"] .form-label,
+html.theme-dark .form-label {
+    color: #ddd6eb !important;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+html[data-theme="dark"] .cc-hero,
+html.theme-dark .cc-hero {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(167, 139, 250, .15),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(249, 168, 212, .10),
+            transparent 35%
+        ),
+        #211c2d !important;
+}
+
+html[data-theme="dark"] .cc-page-header,
+html.theme-dark .cc-page-header {
+    background:
+        linear-gradient(
+            135deg,
+            #211c2d,
+            #2b2033
+        ) !important;
+}
+
+
+/* =========================================================
+   BOOTSTRAP BACKGROUND CLASSES
+   ========================================================= */
+
+html[data-theme="dark"] .bg-white,
+html.theme-dark .bg-white {
+    background-color: #1e1929 !important;
+}
+
+html[data-theme="dark"] .bg-light,
+html.theme-dark .bg-light {
+    background-color: #211c2d !important;
+}
+
+html[data-theme="dark"] .bg-body,
+html.theme-dark .bg-body {
+    background-color: #15121d !important;
+}
+
+html[data-theme="dark"] .bg-body-secondary,
+html.theme-dark .bg-body-secondary {
+    background-color: #1e1929 !important;
+}
+
+html[data-theme="dark"] .bg-body-tertiary,
+html.theme-dark .bg-body-tertiary {
+    background-color: #211c2d !important;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+html[data-theme="dark"] .table,
+html.theme-dark .table {
+    --bs-table-bg: #1e1929;
+    --bs-table-color: #f5f1ff;
+    --bs-table-border-color: #40384f;
+
+    color: #f5f1ff !important;
+    background-color: #1e1929 !important;
+}
+
+html[data-theme="dark"] .table > :not(caption) > * > *,
+html.theme-dark .table > :not(caption) > * > * {
+    background-color: #1e1929 !important;
+    color: #f5f1ff !important;
+    border-color: #40384f !important;
+}
+
+html[data-theme="dark"] .table thead th,
+html.theme-dark .table thead th {
+    background-color: #2a2438 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+html[data-theme="dark"] .modal-content,
+html.theme-dark .modal-content {
+    background-color: #1e1929 !important;
+    color: #f5f1ff !important;
+    border-color: #40384f !important;
+}
+
+html[data-theme="dark"] .modal-header,
+html[data-theme="dark"] .modal-footer,
+html.theme-dark .modal-header,
+html.theme-dark .modal-footer {
+    border-color: #40384f !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+html[data-theme="dark"] .btn-cc-outline,
+html.theme-dark .btn-cc-outline {
+    color: #ddd6eb !important;
+    border-color: #5c526e !important;
+}
+
+html[data-theme="dark"] .btn-cc-outline:hover,
+html.theme-dark .btn-cc-outline:hover {
+    background-color: #3a3150 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .btn-cc-primary,
+html.theme-dark .btn-cc-primary {
+    background-color: #8b6bd1 !important;
+    border-color: #8b6bd1 !important;
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+html[data-theme="dark"] .cc-footer,
+html.theme-dark .cc-footer {
+    background-color: #0d0a12 !important;
+    color: #c9c0d8 !important;
+}
+
+html[data-theme="dark"] .cc-footer a,
+html.theme-dark .cc-footer a {
+    color: #c4b5fd !important;
+}
+
+html[data-theme="dark"] .cc-footer a:hover,
+html.theme-dark .cc-footer a:hover {
+    color: #ff8fc3 !important;
+}
+
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+html[data-theme="dark"] #themeToggleBtn,
+html.theme-dark #themeToggleBtn {
+    background-color: #2a2438 !important;
+    color: #f9d5e9 !important;
+    border-color: #5c526e !important;
+}
+
+
+/* =========================================================
+   TRANSITIONS
+   ========================================================= */
+
+html,
+body,
+.cc-navbar,
+.card,
+.cc-card,
+.form-control,
+.form-select,
+.dropdown-menu,
+.modal-content,
+.cc-footer,
+.cc-hero,
+.cc-page-header {
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+/* =========================================================
+   DARK MODE - FINAL CTA SECTION
+   ========================================================= */
+
+html[data-theme="dark"] .final-cta,
+html.theme-dark .final-cta {
+    background:
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(139, 92, 246, 0.18),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(236, 72, 153, 0.12),
+            transparent 40%
+        ),
+        #17131f !important;
+
+    color: #f8f5ff !important;
+}
+
+html[data-theme="dark"] .final-cta h2,
+html.theme-dark .final-cta h2 {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .final-cta p,
+html.theme-dark .final-cta p {
+    color: #bdb4cc !important;
+}
+
+html[data-theme="dark"] .final-cta .btn,
+html.theme-dark .final-cta .btn {
+    background: linear-gradient(
+        135deg,
+        #a78bfa,
+        #8b5cf6
+    ) !important;
+
+    color: #ffffff !important;
+    border: none !important;
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.25);
+}
+
+html[data-theme="dark"] .final-cta .btn:hover,
+html.theme-dark .final-cta .btn:hover {
+    background: linear-gradient(
+        135deg,
+        #c4b5fd,
+        #a78bfa
+    ) !important;
+
+    color: #17131f !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   FINAL CTA - LIGHT MODE
+   ========================================================= */
+
+.final-cta {
+    background: linear-gradient(
+        135deg,
+        var(--cc-purple-dark),
+        var(--cc-purple)
+    );
+}
+
+
+/* =========================================================
+   FINAL CTA - DARK MODE
+   ========================================================= */
+
+html[data-theme="dark"] .final-cta,
+html.theme-dark .final-cta {
+    background:
+        radial-gradient(
+            circle at 20% 50%,
+            rgba(139, 92, 246, 0.18),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(236, 72, 153, 0.12),
+            transparent 40%
+        ),
+        #17131f !important;
+}
+
+html[data-theme="dark"] .final-cta h2,
+html.theme-dark .final-cta h2 {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .final-cta p,
+html.theme-dark .final-cta p {
+    color: #bdb4cc !important;
+}
+
+html[data-theme="dark"] .final-cta .btn,
+html.theme-dark .final-cta .btn {
+    background: linear-gradient(
+        135deg,
+        #a78bfa,
+        #8b5cf6
+    ) !important;
+
+    color: #ffffff !important;
+    border: none !important;
+
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.25);
+}
+
+html[data-theme="dark"] .final-cta .btn:hover,
+html.theme-dark .final-cta .btn:hover {
+    background: linear-gradient(
+        135deg,
+        #c4b5fd,
+        #a78bfa
+    ) !important;
+
+    color: #17131f !important;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   DARK MODE - PROMOTIONAL BARS
+   ========================================================= */
+
+/* Top promo bar */
+html[data-theme="dark"] .cc-top-promo,
+html.theme-dark .cc-top-promo {
+    background: #17131f !important;
+    color: #f5f1ff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Bottom promo bar */
+html[data-theme="dark"] .cc-promo-strip,
+html.theme-dark .cc-promo-strip {
+    background: #17131f !important;
+    color: #f5f1ff !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+
+/* Promo text */
+html[data-theme="dark"] .cc-top-promo *,
+html[data-theme="dark"] .cc-promo-strip *,
+html.theme-dark .cc-top-promo *,
+html.theme-dark .cc-promo-strip * {
+    color: #f5f1ff !important;
+}
+
+
+/* Promo links */
+html[data-theme="dark"] .cc-top-promo a,
+html[data-theme="dark"] .cc-promo-strip a,
+html.theme-dark .cc-top-promo a,
+html.theme-dark .cc-promo-strip a {
+    color: #f9a8d4 !important;
+}
+
+
+html[data-theme="dark"] .cc-top-promo a:hover,
+html[data-theme="dark"] .cc-promo-strip a:hover,
+html.theme-dark .cc-top-promo a:hover,
+html.theme-dark .cc-promo-strip a:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   PROMO BANNER - DARK MODE
+   ========================================================= */
+
+.cc-promo-banner {
+    background: var(--cc-purple-dark);
+}
+
+html[data-theme="dark"] .cc-promo-banner,
+html.theme-dark .cc-promo-banner {
+    background: #17131f !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .cc-promo-banner p,
+html.theme-dark .cc-promo-banner p {
+    color: #f5f1ff !important;
+}
+
+html[data-theme="dark"] .cc-promo-banner .text-pink,
+html.theme-dark .cc-promo-banner .text-pink {
+    color: #f9a8d4 !important;
+}
+
+html[data-theme="dark"] .cc-promo-banner a,
+html.theme-dark .cc-promo-banner a {
+    color: #f9a8d4 !important;
+}
+
+html[data-theme="dark"] .cc-promo-banner a:hover,
+html.theme-dark .cc-promo-banner a:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   DARK MODE - TOP PROMO BAR
+   ========================================================= */
+
+html[data-theme="dark"] .cc-promo-bar,
+html.theme-dark .cc-promo-bar {
+    background: #17131f !important;
+    color: #f5f1ff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .cc-promo-bar *,
+html.theme-dark .cc-promo-bar * {
+    color: #f5f1ff !important;
+}
+
+html[data-theme="dark"] .cc-promo-bar .text-pink,
+html.theme-dark .cc-promo-bar .text-pink {
+    color: #f9a8d4 !important;
+}
+
+/* Dark mode - Create Your Case button text */
+html[data-theme="dark"] .btn-primary,
+html.theme-dark .btn-primary {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .btn-primary *,
+html.theme-dark .btn-primary * {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   DARK MODE - CREATE YOUR CASE BUTTON
+   ========================================================= */
+
+html[data-theme="dark"] .btn-cc-cta,
+html.theme-dark .btn-cc-cta {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .btn-cc-cta i,
+html.theme-dark .btn-cc-cta i {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   CREATE YOUR CASE - DARK MODE
+   ========================================================= */
+
+html[data-theme="dark"] .btn-cc-cta,
+html.theme-dark .btn-cc-cta {
+    background: linear-gradient(
+        135deg,
+        #f472b6,
+        #8b5cf6
+    ) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.30) !important;
+}
+
+html[data-theme="dark"] .btn-cc-cta i,
+html.theme-dark .btn-cc-cta i {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .btn-cc-cta:hover,
+html.theme-dark .btn-cc-cta:hover {
+    background: linear-gradient(
+        135deg,
+        #ec4899,
+        #a78bfa
+    ) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   CUSTOMIZER - CASE STYLE GRID
+   ========================================================= */
+
+#designSwatches.case-style-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(90px, 1fr));
+    gap: 18px !important;
+    width: 100%;
+    align-items: start;
+}
+
+/* Individual case style */
+#designSwatches .design-swatch {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Color circle */
+#designSwatches .swatch-circle {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px;
+    margin: 0 auto;
+}
+
+/* Case name */
+#designSwatches .design-swatch > p:first-of-type {
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+}
+
+/* Extra price */
+#designSwatches .design-swatch > p:last-of-type {
+    margin-top: 3px !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    #designSwatches.case-style-grid {
+        grid-template-columns: repeat(3, minmax(90px, 1fr));
+        gap: 20px 12px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    #designSwatches.case-style-grid {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        gap: 20px 10px !important;
+    }
+
+}
